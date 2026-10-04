@@ -7,3 +7,7 @@
 .source-link{color:var(--lime);display:inline-block;margin-top:10px}
 
 .fiscal-supervisor{border:1px solid #514568;border-left:3px solid #b7a4ff;border-radius:8px;background:#211e2b;padding:18px 20px;margin:20px 0}.fiscal-supervisor .chat-label{display:block;color:#c9baff;margin-bottom:8px}.fiscal-supervisor p{line-height:1.6;margin:0}.fiscal-confidence{border:0;padding:0;margin:24px 0 0;min-width:0}.fiscal-confidence legend{font-size:14px;color:var(--muted);margin-bottom:12px}.confidence-options{display:flex;flex-wrap:wrap;gap:10px}.confidence-options [aria-pressed="true"]{background:var(--lime);border-color:var(--lime);color:var(--bg);font-weight:700}.confidence-hint{color:var(--muted);font-size:13px;line-height:1.5;margin:12px 0 0}.fiscal-choices{margin-top:16px}@media(max-width:700px){.confidence-options{display:grid;grid-template-columns:1fr}.confidence-options button{text-align:left}.fiscal-supervisor{padding:16px}.fiscal-score{font-size:23px}}
+
+/* Headings receive programmatic focus for reading, without a selection outline. */
+.intro h1[tabindex="-1"]:focus,.game-content h2[tabindex="-1"]:focus{outline:none}
+.fiscal-case-header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.fiscal-counter{border:1px solid var(--line);border-radius:6px;padding:6px 10px;background:var(--panel);color:var(--lime);font:700 15px monospace;white-space:nowrap}
