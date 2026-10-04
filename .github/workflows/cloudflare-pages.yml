@@ -1,0 +1,45 @@
+name: Cloudflare Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-pages-production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_PAGES_PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Validar e preparar site
+        shell: bash
+        run: |
+          node --check app.js
+          node --check fiscal.js
+          mkdir -p dist
+          cp index.html style.css app.js fiscal.js favicon.svg pix-qr.png dist/
+      - name: Verificar configuração do deploy
+        shell: bash
+        run: |
+          missing=0
+          for key in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID CLOUDFLARE_PAGES_PROJECT_NAME; do
+            if [ -z "${!key}" ]; then
+              echo "::error::Configure $key nas configurações do repositório. Token e account ID são secrets; nome do projeto é uma variable."
+              missing=1
+            fi
+          done
+          exit "$missing"
+      - name: Publicar no Cloudflare Pages
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}" --branch=main
