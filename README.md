@@ -9,7 +9,7 @@ Um desafio interativo e bem-humorado sobre a vida real de quem desenvolve softwa
 A página inicial apresenta duas histórias independentes. No celular, os cards ficam um abaixo do outro.
 
 - `/#dev-em-30-segundos`: o desafio original, com produção, cliente e incidentes.
-- `/#fiscal-de-ia`: 10 textos para classificar como humano, IA ou humano revisado por IA; ferramentas de brincadeira, origem revelada, placar, certificado e compartilhamento.
+- `/#fiscal-de-ia`: 10 textos para classificar como humano, IA ou humano revisado por IA; ferramentas de brincadeira, origem revelada, placar, certificado, contribuição opcional com QR Code Pix e compartilhamento.
 
 Os links usam fragmentos para funcionar em hospedagem estática sem regras de redirecionamento. Voltar/avançar no navegador troca a história e inicia uma nova rodada. Cada final permite experimentar a outra história.
 

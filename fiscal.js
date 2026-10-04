@@ -118,8 +118,12 @@ function judgeFiscal(guess){
   beep();$('nextCase').focus({preventScroll:true});
 }
 function finishFiscal(){
+  // Reuse the original Pix section and its handlers, including clipboard fallback.
+  renderOriginalStory(4);
+  const pixSupport=$('content').querySelector('.pix-support');
   fiscalFrame('FISCALIZAÇÃO CONCLUÍDA',100);
   $('content').innerHTML='<div class="certificate"><div class="eyebrow">INSTITUTO É SÓ PEDIR PRA IA</div><h2>Fiscal de IA</h2><p>Especialista em reconhecer ChatGPT pelo feeling.</p><div class="stamp">CONVICÇÃO MÁXIMA</div><p class="fiscal-score" id="fiscalScore"></p><p id="accusations"></p></div><p class="final-quote">Seu palpite virou um laudo.<br><span class="lime">A evidência ainda está em análise.</span></p><p class="sub">Este placar vale só para estes 10 exemplos. Não mede sua capacidade de detectar IA em qualquer texto. Uma pessoa pode escrever bem; uma IA pode errar; uma ideia humana pode receber ajuda na redação.</p><div class="row center"><button class="primary" id="retryFiscal">Fiscalizar de novo</button><button class="secondary" id="tryDev">Experimentar É Só Pedir pra IA</button><button class="secondary" id="shareFiscal">Compartilhar meu placar</button></div>';
+  $('content').insertBefore(pixSupport,$('content').querySelector('.row.center'));
   $('fiscalScore').textContent=fiscalScore+' de 10 acertos. Confiança: 100%.';
   $('accusations').textContent='Humanos acusados de serem IA: '+fiscalAccusations+'.';
   $('retryFiscal').onclick=startFiscal;
