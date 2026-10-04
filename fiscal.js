@@ -2,61 +2,71 @@
 // Gerados: exemplos criados por IA. A ordem muda; a origem não.
 const fiscalCases = [
   {
-    "text": "Dom Casmurro, domingo vou jantar com você.",
+    "text": "Se embaraçar, você desembaraça depois.",
     "origin": "human",
-    "note": "Bilhete ficcional escrito por Machado de Assis em Dom Casmurro, capítulo I. Texto anterior à IA generativa.",
-    "source": "https://pt.wikisource.org/wiki/Dom_Casmurro/I"
+    "reveal": "O famoso “faz aí, depois a gente arruma” já existia em 1899. O cliente só mudou de roupa.",
+    "note": "Fala de Bentinho em Dom Casmurro, capítulo XXXII, de Machado de Assis. Trecho humano, sem reformulação.",
+    "source": "https://pt.wikisource.org/wiki/Dom_Casmurro/XXXII"
   },
   {
-    "text": "Ha livros que apenas terão isso dos seus autores; alguns nem tanto.",
+    "text": "Matamos o tempo; o tempo nos enterra.",
     "origin": "human",
-    "note": "Machado de Assis, Dom Casmurro, capítulo I. Grafia da edição de 1899 preservada.",
-    "source": "https://pt.wikisource.org/wiki/Dom_Casmurro/I"
+    "reveal": "Parece uma legenda dramática gerada em dois segundos. Machado escreveu antes de existir Wi-Fi.",
+    "note": "Machado de Assis, Memórias Póstumas de Brás Cubas, capítulo CXIX. Trecho humano, sem reformulação.",
+    "source": "https://pt.wikisource.org/wiki/Memórias_Póstumas_de_Brás_Cubas/CXIX"
   },
   {
-    "text": "Pois sim, mas eu queria ver.",
+    "text": "Medo de apanhar, de ser preso, de brigar, de andar, de trabalhar...",
     "origin": "human",
-    "note": "Fala escrita por Machado de Assis em Dom Casmurro, capítulo CX. Uma frase curta também tem autoria documentada.",
-    "source": "https://pt.wikisource.org/wiki/Dom_Casmurro/CX"
+    "reveal": "Até o medo de trabalhar tem autoria documentada. O RH preferiu não comentar.",
+    "note": "Fala de Capitu em Dom Casmurro, capítulo XLIII, de Machado de Assis. Trecho humano, sem reformulação.",
+    "source": "https://pt.wikisource.org/wiki/Dom_Casmurro/XLIII"
   },
   {
     "text": "Ia dizer religioso, risquei a palavra, mas aqui a ponho outra vez",
     "origin": "human",
-    "note": "Trecho de Machado de Assis em Dom Casmurro, capítulo CX. Até um escritor humano revisava as próprias palavras.",
+    "reveal": "Até os humanos corrigem o que escrevem. Machado apagou, pensou e colocou de volta. Continuou humano.",
+    "note": "Trecho de Machado de Assis em Dom Casmurro, capítulo CX. Mantido do arquivo original.",
     "source": "https://pt.wikisource.org/wiki/Dom_Casmurro/CX"
   },
   {
-    "text": "O detector acusou minha lista de compras. Agora o tomate precisa provar que nasceu na horta.",
+    "text": "Corrigi os erros do comentário e agora parece que perdi minha identidade.",
     "origin": "ai",
-    "note": "Piada inteiramente gerada por IA para este jogo."
+    "reveal": "Aparentemente, seu certificado de humanidade dependia de escrever “concerteza”.",
+    "note": "Comentário fictício inteiramente criado por IA para este jogo."
   },
   {
-    "text": "mano fui corrigir uma vírgula e perdi meu certificado de ser humano kkk",
+    "text": "Obrigado por explicar. Continuo discordando, mas agora com mais informação.",
     "origin": "ai",
-    "note": "Exemplo gerado por IA com gíria e erros intencionais. Escrita informal não comprova autoria humana."
+    "reveal": "Discordou sem xingar. O departamento considera esse comportamento suspeito.",
+    "note": "Comentário fictício inteiramente criado por IA para este jogo. Educação, por si só, não identifica autoria."
   },
   {
-    "text": "Há opiniões que apenas terão isso dos seus donos; algumas nem tanto.",
+    "text": "Li só o título, mas já tenho uma opinião bastante formada.",
     "origin": "ai",
-    "note": "Frase criada por IA imitando um registro literário. Tom antigo também pode ser gerado."
+    "reveal": "Qualificação suficiente para assumir a chefia. A IA também sabe simular um especialista de comentários.",
+    "note": "Comentário fictício inteiramente criado por IA para este jogo."
   },
   {
-    "text": "Dom Casmurro, vou almoçar aí no domingo. Deixa um lugar pra mim.",
+    "text": "Confia em você, mas não precisa achar que todo mundo está errado.",
     "origin": "mixed",
-    "note": "IA adaptou o bilhete humano “Dom Casmurro, domingo vou jantar com você”, de Machado de Assis, mudando refeição e tom.",
-    "source": "https://pt.wikisource.org/wiki/Dom_Casmurro/I"
+    "reveal": "O conselho é humano. A IA só tirou a roupa de 1881. A autoestima veio sem atualização.",
+    "note": "IA reformulou “Crê em ti; mas nem sempre duvides dos outros.”, de Machado de Assis, em Memórias Póstumas de Brás Cubas, capítulo CXIX.",
+    "source": "https://pt.wikisource.org/wiki/Memórias_Póstumas_de_Brás_Cubas/CXIX"
   },
   {
-    "text": "Tá, eu entendi. Mas ainda queria ver com meus próprios olhos.",
+    "text": "Eu quase não apareço. Quando apareço, prefiro ficar quieto.",
     "origin": "mixed",
-    "note": "IA reformulou a fala humana “Pois sim, mas eu queria ver”, de Dom Casmurro, capítulo CX.",
-    "source": "https://pt.wikisource.org/wiki/Dom_Casmurro/CX"
+    "reveal": "A introversão era humana. A IA só ajudou a explicar por que a pessoa sumiu do grupo.",
+    "note": "IA reformulou “Em verdade, pouco appareço e menos falo.”, de Machado de Assis, em Dom Casmurro, capítulo II.",
+    "source": "https://pt.wikisource.org/wiki/Dom_Casmurro/II"
   },
   {
-    "text": "Eu ia escrever “religioso”, apaguei e depois coloquei de novo.",
+    "text": "Se for pra falar “vamos embora”, fala logo. Desse jeito eu não entendi nada.",
     "origin": "mixed",
-    "note": "IA reformulou um trecho humano do capítulo CX de Dom Casmurro. A origem da ideia e a redação final são diferentes.",
-    "source": "https://pt.wikisource.org/wiki/Dom_Casmurro/CX"
+    "reveal": "A dificuldade de entender indireta veio de um humano. A IA deixou a reclamação mais direta.",
+    "note": "Adaptação por IA do trecho “Se ela tem dito simplesmente: ‘Vamos embora!’ pode ser que eu obedecesse ou não; em todo caso, entenderia.”, de Dom Casmurro, capítulo XLIII. A adaptação muda a narração para uma reclamação.",
+    "source": "https://pt.wikisource.org/wiki/Dom_Casmurro/XLIII"
   }
 ];
 let fiscalDeck=[], fiscalIndex=0, fiscalScore=0, fiscalAccusations=0, fiscalAnswered=false;
@@ -130,8 +140,9 @@ function judgeFiscal(guess){
   if(guess==='ai'&&item.origin==='human')fiscalAccusations++;
   $('content').querySelectorAll('[data-origin]').forEach(b=>{b.disabled=true;b.classList.toggle('correct-origin',b.dataset.origin===item.origin);});
   fiscalFrame('CASO '+String(fiscalIndex+1).padStart(2,'0')+' / 10',(fiscalIndex+1)*10);
-  $('verdict').innerHTML='<div class="result"><strong id="verdictTitle"></strong><p id="originNote"></p><span id="promotion"></span></div><div class="row"><button class="primary" id="nextCase">'+(fiscalIndex===9?'Receber meu certificado':fiscalIndex===2?'Aceitar promoção →':fiscalIndex===6?'Assumir a chefia →':'Próximo suspeito →')+'</button><button class="secondary" id="dispute">Discordo do resultado</button></div>';
+  $('verdict').innerHTML='<div class="result"><strong id="verdictTitle"></strong><p id="caseReveal"></p><p id="originNote"></p><span id="promotion"></span></div><div class="row"><button class="primary" id="nextCase">'+(fiscalIndex===9?'Receber meu certificado':fiscalIndex===2?'Aceitar promoção →':fiscalIndex===6?'Assumir a chefia →':'Próximo suspeito →')+'</button><button class="secondary" id="dispute">Discordo do resultado</button></div>';
   $('verdictTitle').textContent=(correct?'Acertou! ':'Palpite rejeitado. ')+'Origem: '+originLabels[item.origin]+'.';
+  $('caseReveal').textContent=item.reveal;
   $('originNote').textContent=item.note;
   if(item.source){const link=document.createElement('a');link.href=item.source;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Consultar texto original ↗';link.className='source-link';$('originNote').append(document.createElement('br'),link);}
   $('promotion').textContent=fiscalReaction(correct,guess,item.origin);
