@@ -59,7 +59,7 @@ const fiscalCases = [
     "source": "https://pt.wikisource.org/wiki/Dom_Casmurro/CX"
   }
 ];
-let fiscalDeck=[], fiscalIndex=0, fiscalScore=0, fiscalAccusations=0, fiscalAnswered=false, fiscalConfidence=null, fiscalConviction=0, fiscalBoldErrors=0;
+let fiscalDeck=[], fiscalIndex=0, fiscalScore=0, fiscalAccusations=0, fiscalAnswered=false;
 const originLabels={human:'Humano',ai:'IA',mixed:'Humano + IA'};
 function navigateStory(story){
   const hash=story?'#'+story:'';
@@ -82,9 +82,9 @@ function openStory(){
 function startFiscal(){
   fiscalDeck=fiscalCases.slice();
   for(let i=fiscalDeck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[fiscalDeck[i],fiscalDeck[j]]=[fiscalDeck[j],fiscalDeck[i]];}
-  fiscalIndex=0;fiscalScore=0;fiscalAccusations=0;fiscalConviction=0;fiscalBoldErrors=0;
+  fiscalIndex=0;fiscalScore=0;fiscalAccusations=0;
   fiscalFrame('CONTRATAÇÃO APROVADA',0);
-  $('content').innerHTML='<div class="eyebrow">DEPARTAMENTO DE PALPITES NÃO SOLICITADOS</div><h2>Seu currículo nos impressionou.</h2><div class="fiscal-supervisor"><span class="chat-label">SUPERVISOR · SR. CERTEZA</span><p>Você identificou um travessão num comentário. É esse tipo de investigação que procuramos.</p></div><p class="sub">Seu primeiro plantão tem 10 textos. Escolha sua confiança e dê o veredito: humano, IA ou humano + IA. Aqui, até um palpite pode render uma promoção.</p><button class="primary" id="beginFiscal">Assumir meu cargo →</button><p class="case-note">O arquivo mistura trechos de livros e comentários fictícios, com origem registrada. As ferramentas são zoeira. A fonte aparece depois do palpite.</p>';
+  $('content').innerHTML='<div class="eyebrow">DEPARTAMENTO DE PALPITES NÃO SOLICITADOS</div><h2>Seu currículo nos impressionou.</h2><div class="fiscal-supervisor"><span class="chat-label">SUPERVISOR · SR. CERTEZA</span><p>Você identificou um travessão num comentário. É esse tipo de investigação que procuramos.</p></div><p class="sub">Seu primeiro plantão tem 10 textos. Dê o veredito: humano, IA ou humano + IA. Aqui, até um palpite pode render uma promoção.</p><button class="primary" id="beginFiscal">Assumir meu cargo →</button><p class="case-note">O arquivo mistura trechos de livros e comentários fictícios, com origem registrada. As ferramentas são zoeira. A fonte aparece depois do palpite.</p>';
   $('beginFiscal').onclick=()=>{beep();renderFiscal();};
   fiscalFocus();
 }
@@ -105,75 +105,59 @@ function fiscalSupervisor(){
   return '';
 }
 function renderFiscal(){
-  fiscalAnswered=false;fiscalConfidence=null;
+  fiscalAnswered=false;
   fiscalFrame('CASO '+String(fiscalIndex+1).padStart(2,'0')+' / 10',fiscalIndex*10);
   const supervisor=fiscalSupervisor();
-  $('content').innerHTML=`<div class="eyebrow">DEPARTAMENTO DE PALPITES NÃO SOLICITADOS</div><h2>${fiscalIndex===3?'Parabéns, supervisor.':fiscalIndex===7?'A chefia é sua.':'Isso tem cara de IA?'}</h2>${supervisor?'<div class="fiscal-supervisor"><span class="chat-label">SUPERVISOR · SR. CERTEZA</span><p>'+supervisor+'</p></div>':''}<div class="fiscal-tools"><button class="quiet" id="dashTool">Detector de travessão</button>${fiscalIndex>=3?'<button class="quiet" id="commaTool">Detector de vírgula</button><button class="quiet" id="thereforeTool">Farejador de “portanto”</button>':''}${fiscalIndex>=7?'<button class="quiet" id="politeTool">Medidor de educação</button>':''}</div><div class="reddit-comment"><div class="chat-label">TEXTO SOB INVESTIGAÇÃO</div><blockquote id="suspectText"></blockquote></div><fieldset class="fiscal-confidence"><legend>Qual é seu grau de confiança?</legend><div class="confidence-options"><button class="quiet" data-confidence="25" aria-pressed="false">Chutei</button><button class="quiet" data-confidence="75" aria-pressed="false">Tenho quase certeza</button><button class="quiet" data-confidence="100" aria-pressed="false">Pode banir</button></div></fieldset><p class="confidence-hint" id="confidenceHint">Escolha sua confiança para liberar o veredito.</p><div class="fiscal-choices"><button class="choice" data-origin="human" disabled>Foi humano</button><button class="choice" data-origin="ai" disabled>Foi IA</button><button class="choice" data-origin="mixed" disabled>Humano + IA</button></div><div id="verdict" aria-live="polite"></div><p class="case-note">Humanos: trechos de domínio público. IA: exemplos gerados. Humano + IA: adaptações desses trechos. A fonte aparece após o palpite.</p>`;
+  $('content').innerHTML=`<div class="eyebrow">DEPARTAMENTO DE PALPITES NÃO SOLICITADOS</div><h2>${fiscalIndex===3?'Parabéns, supervisor.':fiscalIndex===7?'A chefia é sua.':'Isso tem cara de IA?'}</h2>${supervisor?'<div class="fiscal-supervisor"><span class="chat-label">SUPERVISOR · SR. CERTEZA</span><p>'+supervisor+'</p></div>':''}<div class="fiscal-tools"><button class="quiet" id="dashTool">Detector de travessão</button>${fiscalIndex>=3?'<button class="quiet" id="commaTool">Detector de vírgula</button><button class="quiet" id="thereforeTool">Farejador de “portanto”</button>':''}${fiscalIndex>=7?'<button class="quiet" id="politeTool">Medidor de educação</button>':''}</div><div class="reddit-comment"><div class="chat-label">TEXTO SOB INVESTIGAÇÃO</div><blockquote id="suspectText"></blockquote></div><div class="fiscal-choices"><button class="choice" data-origin="human">Foi humano</button><button class="choice" data-origin="ai">Foi IA</button><button class="choice" data-origin="mixed">Humano + IA</button></div><div id="verdict" aria-live="polite"></div><p class="case-note">Humanos: trechos de domínio público. IA: exemplos gerados. Humano + IA: adaptações desses trechos. A fonte aparece após o palpite.</p>`;
   $('suspectText').textContent=fiscalDeck[fiscalIndex].text;
   $('dashTool').onclick=()=>toast('Tem pontuação. Estamos acionando as autoridades.');
   if($('commaTool'))$('commaTool').onclick=()=>toast('Vírgula encontrada. O ensino fundamental será investigado.');
   if($('thereforeTool'))$('thereforeTool').onclick=()=>toast('Se escreveu “portanto”, já temos motivo para abrir uma pasta.');
   if($('politeTool'))$('politeTool').onclick=()=>toast('Agradeceu pela resposta. Gentileza acima do limite permitido.');
-  $('content').querySelectorAll('[data-confidence]').forEach(b=>b.onclick=()=>{
-    if(fiscalAnswered)return;
-    fiscalConfidence=Number(b.dataset.confidence);
-    $('content').querySelectorAll('[data-confidence]').forEach(option=>option.setAttribute('aria-pressed',String(option===b)));
-    $('content').querySelectorAll('[data-origin]').forEach(option=>option.disabled=false);
-    $('confidenceHint').textContent='Confiança registrada. Agora dê seu veredito.';
-  });
   $('content').querySelectorAll('[data-origin]').forEach(b=>b.onclick=()=>judgeFiscal(b.dataset.origin));
   fiscalFocus();
 }
-function fiscalReaction(correct,guess,origin,confidence){
-  if(correct&&confidence===25)return 'Boa análise, mas falta convicção para trabalhar neste departamento.';
-  if(correct&&confidence===100)return 'Acertou e já pediu banimento. O RH anotou seu potencial.';
+function fiscalReaction(correct,guess,origin){
   if(correct)return 'Seu feeling acertou. A chefia vai chamar isso de método.';
   if(guess==='ai'&&origin==='mixed')return 'O pensamento era humano. A vírgula veio de uma consultoria externa.';
-  if(confidence===100&&guess==='ai'&&origin==='human')return 'Acusou um humano e ainda pediu o banimento. Perfil de liderança.';
-  if(confidence===100)return 'Errou sem hesitar. É essa segurança que procuramos na diretoria.';
-  if(confidence===25)return 'Era um chute mesmo. Obrigado por preencher o formulário com sinceridade.';
-  return 'A quase certeza não resistiu à primeira evidência. Acontece no departamento.';
+  if(guess==='ai'&&origin==='human')return 'Acusou um humano. O departamento chama isso de iniciativa.';
+  return 'O palpite não resistiu à primeira evidência. Sua promoção continua de pé.';
 }
 function judgeFiscal(guess){
-  if(fiscalAnswered||fiscalConfidence===null||!Object.hasOwn(originLabels,guess))return;
+  if(fiscalAnswered||!Object.hasOwn(originLabels,guess))return;
   fiscalAnswered=true;
   const item=fiscalDeck[fiscalIndex],correct=guess===item.origin;
   if(correct)fiscalScore++;
-  fiscalConviction+=fiscalConfidence;
-  if(!correct&&fiscalConfidence===100)fiscalBoldErrors++;
   if(guess==='ai'&&item.origin==='human')fiscalAccusations++;
-  $('content').querySelectorAll('[data-confidence]').forEach(b=>b.disabled=true);
   $('content').querySelectorAll('[data-origin]').forEach(b=>{b.disabled=true;b.classList.toggle('correct-origin',b.dataset.origin===item.origin);});
   fiscalFrame('CASO '+String(fiscalIndex+1).padStart(2,'0')+' / 10',(fiscalIndex+1)*10);
   $('verdict').innerHTML='<div class="result"><strong id="verdictTitle"></strong><p id="originNote"></p><span id="promotion"></span></div><div class="row"><button class="primary" id="nextCase">'+(fiscalIndex===9?'Receber meu certificado':fiscalIndex===2?'Aceitar promoção →':fiscalIndex===6?'Assumir a chefia →':'Próximo suspeito →')+'</button><button class="secondary" id="dispute">Discordo do resultado</button></div>';
   $('verdictTitle').textContent=(correct?'Acertou! ':'Palpite rejeitado. ')+'Origem: '+originLabels[item.origin]+'.';
   $('originNote').textContent=item.note;
   if(item.source){const link=document.createElement('a');link.href=item.source;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Consultar texto original ↗';link.className='source-link';$('originNote').append(document.createElement('br'),link);}
-  $('promotion').textContent=fiscalReaction(correct,guess,item.origin,fiscalConfidence);
+  $('promotion').textContent=fiscalReaction(correct,guess,item.origin);
   $('dispute').onclick=()=>toast('Sua intuição será encaminhada para substituir o registro de autoria.');
   let advanced=false;
   $('nextCase').onclick=()=>{if(advanced)return;advanced=true;fiscalIndex++;if(fiscalIndex===10)finishFiscal();else renderFiscal();};
   beep();$('nextCase').focus({preventScroll:true});
 }
 function fiscalCertificate(){
-  if(fiscalBoldErrors>=3)return {title:'Diretor de acusações sem provas',note:'Sua certeza sobreviveu a todas as evidências. A diretoria precisa de você.'};
+  if(fiscalScore<=3)return {title:'Diretor de acusações sem provas',note:'Poucos acertos, carreira meteórica. A diretoria precisa de você.'};
   if(fiscalAccusations>=2)return {title:'Caçador de humanos suspeitos',note:'Você encontrou IA onde havia gente. O departamento chama isso de iniciativa.'};
   if(fiscalScore>=8)return {title:'Fiscal com evidências',note:'Você investigou antes de acusar. O departamento ainda não sabe como lidar com isso.'};
-  if(fiscalConviction<=400)return {title:'Chefe do “acho que”',note:'Você chegou à chefia sem fingir certeza. Seu crachá veio com um ponto de interrogação.'};
   return {title:'Especialista em feeling',note:'Seu palpite virou um laudo. A evidência ainda está em análise.'};
 }
 function finishFiscal(){
   // Reuse the original Pix section and its handlers, including clipboard fallback.
   renderOriginalStory(4);
   const pixSupport=$('content').querySelector('.pix-support');
-  const certificate=fiscalCertificate(), average=Math.round(fiscalConviction/10);
+  const certificate=fiscalCertificate();
   fiscalFrame('FISCALIZAÇÃO CONCLUÍDA',100);
-  $('content').innerHTML='<div class="certificate"><div class="eyebrow">INSTITUTO É SÓ PEDIR PRA IA</div><h2>Fiscal de IA</h2><p id="fiscalTitle"></p><div class="stamp">CARREIRA METEÓRICA</div><p class="fiscal-score" id="fiscalScore"></p><p id="accusations"></p><p id="boldErrors"></p></div><p class="final-quote" id="careerNote"></p><p class="sub">Este placar vale só para estes 10 exemplos. Não mede sua capacidade de detectar IA em qualquer texto. Uma pessoa pode escrever bem; uma IA pode errar; uma ideia humana pode receber ajuda na redação.</p><div class="row center"><button class="primary" id="retryFiscal">Fiscalizar de novo</button><button class="secondary" id="tryDev">Experimentar É Só Pedir pra IA</button><button class="secondary" id="shareFiscal">Compartilhar meu placar</button></div>';
+  $('content').innerHTML='<div class="certificate"><div class="eyebrow">INSTITUTO É SÓ PEDIR PRA IA</div><h2>Fiscal de IA</h2><p id="fiscalTitle"></p><div class="stamp">CARREIRA METEÓRICA</div><p class="fiscal-score" id="fiscalScore"></p><p id="accusations"></p></div><p class="final-quote" id="careerNote"></p><p class="sub">Este placar vale só para estes 10 exemplos. Não mede sua capacidade de detectar IA em qualquer texto. Uma pessoa pode escrever bem; uma IA pode errar; uma ideia humana pode receber ajuda na redação.</p><div class="row center"><button class="primary" id="retryFiscal">Fiscalizar de novo</button><button class="secondary" id="tryDev">Experimentar É Só Pedir pra IA</button><button class="secondary" id="shareFiscal">Compartilhar meu placar</button></div>';
   $('content').insertBefore(pixSupport,$('content').querySelector('.row.center'));
   $('fiscalTitle').textContent=certificate.title;
   $('careerNote').textContent=certificate.note;
-  $('fiscalScore').textContent=fiscalScore+' de 10 acertos. Confiança média: '+average+'%.';
-  $('boldErrors').textContent='Erros no modo “Pode banir”: '+fiscalBoldErrors+'.';
+  $('fiscalScore').textContent=fiscalScore+' de 10 acertos.';
   pixSupport.querySelector('h3').textContent='Contribua com o departamento.';
   pixSupport.querySelector('p').textContent='Nosso detector custa R$ 0 e continua acima do orçamento. Se a fiscalização rendeu uma risada, o Pix é opcional.';
   $('accusations').textContent='Humanos acusados de serem IA: '+fiscalAccusations+'.';
@@ -181,7 +165,7 @@ function finishFiscal(){
   $('tryDev').onclick=()=>navigateStory('dev-em-30-segundos');
   $('shareFiscal').onclick=async()=>{
     const url=new URL(location.href);url.hash='fiscal-de-ia';
-    const text='Virei '+certificate.title+' no Fiscal de IA: '+fiscalScore+'/10 acertos, confiança média de '+average+'%. '+url.href;
+    const text='Virei '+certificate.title+' no Fiscal de IA: '+fiscalScore+'/10 acertos. '+url.href;
     try{await navigator.clipboard.writeText(text);toast('Placar e link copiados!');}catch{toast('Copie o link da barra de endereço para compartilhar.');}
   };
   fiscalFocus();
