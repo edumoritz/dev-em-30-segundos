@@ -9,7 +9,7 @@ Um desafio interativo e bem-humorado sobre a vida real de quem desenvolve softwa
 A página inicial apresenta duas histórias independentes. No celular, os cards ficam um abaixo do outro.
 
 - `/#dev-em-30-segundos`: o desafio original, com produção, cliente e incidentes.
-- `/#fiscal-de-ia`: 10 textos para classificar como humano, IA ou humano revisado por IA; ferramentas de brincadeira, origem revelada, placar, certificado, contribuição opcional com QR Code Pix e compartilhamento.
+- `/#fiscal-de-ia`: 10 textos para classificar como humano, IA ou humano revisado por IA; ferramentas de brincadeira, origem revelada, placar, certificado e compartilhamento.
 
 Os links usam fragmentos para funcionar em hospedagem estática sem regras de redirecionamento. Voltar/avançar no navegador troca a história e inicia uma nova rodada. Cada final permite experimentar a outra história.
 
@@ -26,7 +26,6 @@ O registro está em `fiscal.js`, é revelado após o palpite com link para a fon
 - Incidentes fictícios em produção e decisões sobre como responder.
 - Certificado final e rodada extra.
 - Som ligado por padrão, ativado na primeira interação, com opção de desligar.
-- Contribuição opcional via Pix, com QR Code e Copia e Cola.
 
 ## Executar localmente
 
@@ -46,11 +45,7 @@ Para conectar este repositório ao Pages, selecione um projeto de site estático
 
 - `index.html`: página inicial e estrutura do desafio.
 - `style.css`: estilos e layout responsivo.
-- `app.js`: desafios originais, sons, certificado e código Pix.
+- `app.js`: desafios originais, sons, certificado.
 - `fiscal.js`: navegação entre histórias, casos com origem registrada e jogo Fiscal de IA.
-- `pix-qr.png`: QR Code da contribuição opcional.
 - `favicon.svg`: ícone do site.
 
-O QR Code e o código Pix em `app.js` precisam ser atualizados juntos caso o destinatário seja alterado. O site não confirma pagamentos automaticamente.
-
-Criado por Eduardo Moritz.

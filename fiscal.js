@@ -158,18 +158,12 @@ function fiscalCertificate(){
   return {title:'Especialista em feeling',note:'Seu palpite virou um laudo. A evidência ainda está em análise.'};
 }
 function finishFiscal(){
-  // Reuse the original Pix section and its handlers, including clipboard fallback.
-  renderOriginalStory(4);
-  const pixSupport=$('content').querySelector('.pix-support');
   const certificate=fiscalCertificate();
   fiscalFrame('FISCALIZAÇÃO CONCLUÍDA',100);
   $('content').innerHTML='<div class="certificate"><div class="eyebrow">INSTITUTO É SÓ PEDIR PRA IA</div><h2>Fiscal de IA</h2><p id="fiscalTitle"></p><div class="stamp">CARREIRA METEÓRICA</div><p class="fiscal-score" id="fiscalScore"></p><p id="accusations"></p></div><p class="final-quote" id="careerNote"></p><p class="sub">Este placar vale só para estes 10 exemplos. Não mede sua capacidade de detectar IA em qualquer texto. Uma pessoa pode escrever bem; uma IA pode errar; uma ideia humana pode receber ajuda na redação.</p><div class="row center"><button class="primary" id="retryFiscal">Fiscalizar de novo</button><button class="secondary" id="tryDev">Experimentar É Só Pedir pra IA</button><button class="secondary" id="shareFiscal">Compartilhar meu placar</button></div>';
-  $('content').insertBefore(pixSupport,$('content').querySelector('.row.center'));
   $('fiscalTitle').textContent=certificate.title;
   $('careerNote').textContent=certificate.note;
   $('fiscalScore').textContent=fiscalScore+' de 10 acertos.';
-  pixSupport.querySelector('h3').textContent='Contribua com o departamento.';
-  pixSupport.querySelector('p').textContent='Nosso detector custa R$ 0 e continua acima do orçamento. Se a fiscalização rendeu uma risada, o Pix é opcional.';
   $('accusations').textContent='Humanos acusados de serem IA: '+fiscalAccusations+'.';
   $('retryFiscal').onclick=startFiscal;
   $('tryDev').onclick=()=>navigateStory('dev-em-30-segundos');
@@ -180,7 +174,7 @@ function finishFiscal(){
   };
   fiscalFocus();
 }
-// Extend the original story without rewriting its Pix implementation.
+// Extend the original story with navigation to the Fiscal story.
 $('start').onclick=()=>{beep();navigateStory('dev-em-30-segundos');};
 $('startFiscal').onclick=()=>{beep();navigateStory('fiscal-de-ia');};
 $('restart').onclick=()=>navigateStory('');
