@@ -11,3 +11,98 @@
 /* Headings receive programmatic focus for reading, without a selection outline. */
 .intro h1[tabindex="-1"]:focus,.game-content h2[tabindex="-1"]:focus{outline:none}
 .fiscal-case-header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.fiscal-counter{border:1px solid var(--line);border-radius:6px;padding:6px 10px;background:var(--panel);color:var(--lime);font:700 15px monospace;white-space:nowrap}
+
+/* A viewport-sized game. Long rounds flow into pages instead of scrolling. */
+html{height:100%;overflow:hidden}
+body{height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column}
+header,footer{width:100%;flex:none;margin:0 auto}
+header{padding:14px 5%}
+footer{padding:12px 5%;gap:12px;flex-wrap:wrap}
+main{width:100%;flex:1;min-height:0;min-width:0;margin:0 auto;padding:20px 5%;display:flex;flex-direction:column;overflow:clip}
+.intro{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center}
+.intro h1{font-size:clamp(32px,min(6.4vw,10vh),86px);margin:clamp(12px,3vh,32px) 0;letter-spacing:-2px}
+.intro-bottom{flex:none}
+.ticket{margin-top:clamp(12px,4vh,40px);padding:14px 0;gap:12px;flex-wrap:wrap}
+.aside-note{margin-top:14px}
+#game{flex:1;min-height:0;display:flex;flex-direction:column}
+.game-top{flex:none;gap:8px}
+.progress{flex:none;margin:10px 0 12px}
+.workspace{flex:1;min-height:0;min-width:0;display:flex;flex-direction:column}
+.window-bar{flex:none;padding:10px 16px}
+.game-viewport{flex:1;min-height:0;min-width:0;overflow:clip;margin:18px;position:relative}
+.game-content{padding:0;width:100%;height:100%;column-width:var(--page-width,800px);column-gap:32px;column-fill:auto;overflow:visible;transition:none;display:block}
+.game-content>*{max-width:100%;overflow-wrap:anywhere}
+.game-content h2{font-size:clamp(25px,3.6vw,40px);margin:8px 0 12px;break-after:avoid}
+.game-content .eyebrow{break-after:avoid}
+.game-content .sub{margin-bottom:16px;line-height:1.5}
+.game-content button{max-width:100%;white-space:normal;break-inside:avoid;overflow-wrap:anywhere}
+.game-content .row,.game-content .arena,.game-content .terminal,.game-content .bubble,.game-content .choice,.game-content .certificate,.game-content .result{break-inside:avoid}
+.game-content .primary{padding:14px 20px;min-height:48px;gap:14px}
+.game-content .secondary{padding:12px 16px;min-height:44px}
+.game-content .row{margin-top:16px;gap:10px}
+.game-content .arena{height:clamp(110px,25dvh,210px)}
+.game-content .escape{top:24px}
+.game-content .chat{padding:14px;min-height:0}
+.game-content .chat-label{margin-bottom:10px}
+.game-content .bubble{padding:10px 12px;margin:8px 0;line-height:1.4}
+.game-content .terminal{padding:14px;min-height:0;font:14px/1.5 monospace}
+.game-content .choice{padding:12px 14px;line-height:1.4}
+.game-content .certificate{padding:18px 14px}
+.game-content .certificate h2{font-size:clamp(28px,4vw,44px);margin:12px 0}
+.game-content .certificate p{line-height:1.45;margin:12px 0}
+.game-content .stamp{margin:8px;padding:8px 12px}
+.game-content .final-quote{font-size:20px;margin:18px auto}
+.game-pagination{flex:none;display:flex;justify-content:center;align-items:center;gap:16px;padding:10px 14px;border-top:1px solid var(--line);background:#22262f}
+.page-count{color:var(--muted);font:14px monospace;white-space:nowrap}
+.game-pagination button{min-height:40px}
+.game-foot{flex:none;margin-top:10px;gap:12px;font-size:12px}
+.game-foot .quiet{flex:none}
+#toast{bottom:12px;pointer-events:none}
+#toast:not(.show){visibility:hidden}
+@media(max-width:700px){
+ header{padding:10px 4%;gap:8px}
+ a.brand{font-size:11px;letter-spacing:.4px;gap:7px}
+ .logo{font-size:19px;padding:5px}
+ #sound{font-size:12px;padding:8px;white-space:nowrap}
+ main{padding:12px 4%}
+ .intro h1{font-size:clamp(30px,min(8vw,8dvh),52px);line-height:1.1;margin:14px 0}
+ .intro-bottom{gap:12px}
+ .intro-bottom p{font-size:18px;line-height:1.35}
+ .intro .primary{min-height:48px;padding:14px 20px}
+ .ticket{margin-top:18px;padding:12px 0;gap:8px;font-size:11px}
+ .aside-note{margin-top:10px;font-size:13px;line-height:1.4}
+ .game-top{flex-direction:row;flex-wrap:wrap;font-size:11px;gap:6px}
+ .window-bar{padding:8px 12px;font-size:11px;gap:8px}
+ .game-viewport{margin:12px}
+ .game-content .split{display:block}
+ .game-content .split>div{margin-bottom:14px}
+ .game-content .certificate h2{font-size:28px}
+ .game-foot>span{flex:1;line-height:1.3}
+ footer{flex-direction:row;justify-content:center;padding:8px 4%;font-size:10px;gap:6px 12px;text-align:center}
+ footer span:last-child{display:none}
+ .game-pagination{padding:8px;gap:10px}
+ .game-pagination .quiet{padding:8px 10px}
+}
+@media(max-height:500px){
+ header{padding:6px 4%}
+ main{padding:8px 4%}
+ .intro h1{font-size:clamp(24px,7dvh,38px);margin:8px 0}
+ .intro-bottom{flex-direction:row;align-items:center;gap:12px}
+ .intro-bottom p{font-size:16px;line-height:1.2}
+ .intro .primary{min-height:40px;padding:10px 16px}
+ .ticket{flex-direction:row;margin-top:10px;padding:8px 0;font-size:10px}
+ .aside-note{margin-top:6px;font-size:12px}
+ .game-viewport{margin:10px}
+ .game-content .split{display:block}
+ .game-content .certificate{break-inside:auto}
+ .game-content .certificate h2{font-size:25px}
+ .game-content .certificate p{margin:8px 0}
+ .game-content .chat{border:0;padding:8px}
+ .game-content .row{margin-top:10px}
+ .window-bar{display:none}
+ .game-foot>span{display:none}
+ .game-foot{margin-top:6px;justify-content:flex-end}
+ .game-foot .quiet{padding:6px 10px}
+ footer{padding:6px 4%}
+ footer span:not(:first-child){display:none}
+}
