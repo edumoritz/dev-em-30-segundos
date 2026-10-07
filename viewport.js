@@ -24,14 +24,14 @@
   function layout() {
     if (!viewport.clientWidth || !viewport.clientHeight) return;
     // Reserve navigation space consistently, avoiding pagination/height loops.
-    const width = viewport.clientWidth;
+    const width = viewport.getBoundingClientRect().width;
     stride = width + 32;
     content.style.setProperty('--page-width', `${width}px`);
     content.style.transform = 'none';
-    pages = Math.max(1, Math.ceil((content.scrollWidth + 32) / stride));
+    pages = Math.max(1, Math.ceil((content.scrollWidth + 31) / stride));
     navigation.hidden = pages === 1;
     // Showing navigation can reduce the column height and create more pages.
-    pages = Math.max(1, Math.ceil((content.scrollWidth + 32) / stride));
+    pages = Math.max(1, Math.ceil((content.scrollWidth + 31) / stride));
     showPage(page);
     const focused = document.activeElement;
     if (content.contains(focused)) reveal(focused);
@@ -44,7 +44,7 @@
   function reveal(element) {
     if (!stride) return;
     const offset = element.getBoundingClientRect().left - content.getBoundingClientRect().left;
-    showPage(Math.floor(Math.max(0, offset) / stride));
+    showPage(Math.floor((Math.max(0, offset) + 1) / stride));
   }
   previous.onclick = () => showPage(page - 1);
   next.onclick = () => showPage(page + 1);
