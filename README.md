@@ -6,12 +6,14 @@ Um desafio interativo e bem-humorado sobre a vida real de quem desenvolve softwa
 
 ## Histórias e links diretos
 
-A página inicial apresenta duas histórias independentes. No celular, os cards ficam um abaixo do outro.
+O site abre com a apresentação do desafio original. O Fiscal de IA está desativado e preservado no código; seu script não é carregado e não há botões para acessá-lo. Links antigos com `#fiscal-de-ia` voltam à apresentação original.
 
-- `/#dev-em-30-segundos`: o desafio original, com produção, cliente e incidentes.
-- `/#fiscal-de-ia`: 10 textos para classificar como humano, IA ou humano revisado por IA; ferramentas de brincadeira, origem revelada, placar, certificado e compartilhamento.
+Para reativar, altere `const FISCAL_ENABLED = false` para `true` em `index.html` e publique. Isso restaura a escolha entre as duas histórias, os links diretos e o botão do Fiscal no certificado do primeiro jogo.
 
-Os links usam fragmentos para funcionar em hospedagem estática sem regras de redirecionamento. Voltar/avançar no navegador troca a história e inicia uma nova rodada. Cada final permite experimentar a outra história.
+Quando ativado:
+
+- `/#dev-em-30-segundos`: desafio original, com produção, cliente e incidentes.
+- `/#fiscal-de-ia`: 10 textos para classificar como humano, IA ou humano revisado por IA.
 
 ### Origem dos exemplos do Fiscal
 
