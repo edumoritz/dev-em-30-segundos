@@ -49,7 +49,7 @@
   previous.onclick = () => showPage(page - 1);
   next.onclick = () => showPage(page + 1);
   content.addEventListener('focusin', event => reveal(event.target));
-  new MutationObserver(records => schedule(records.some(record => record.target === content))).observe(content, {childList: true, subtree: true});
+  new MutationObserver(records => schedule(records.some(record => record.target === content))).observe(content, {childList: true, subtree: true, attributes: true, attributeFilter: ['open']});
   new MutationObserver(() => schedule(true)).observe(document.getElementById('game'), {attributes: true, attributeFilter: ['hidden']});
   new ResizeObserver(() => schedule()).observe(viewport);
   content.addEventListener('load', () => schedule(), true);

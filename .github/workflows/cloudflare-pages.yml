@@ -26,7 +26,7 @@ jobs:
           node --check fiscal.js
           node --check viewport.js
           mkdir -p dist
-          cp index.html style.css app.js fiscal.js viewport.js favicon.svg dist/
+          cp index.html style.css app.js fiscal.js viewport.js favicon.svg pix-qr.png dist/
       - name: Verificar configuração do deploy
         shell: bash
         run: |

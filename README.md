@@ -27,6 +27,7 @@ O registro está em `fiscal.js`, é revelado após o palpite com link para a fon
 - Cliente pedindo “só mais uma coisinha”.
 - Incidentes fictícios em produção e decisões sobre como responder.
 - Certificado final e rodada extra.
+- Contribuição opcional via Pix no certificado, com QR Code e botão de copiar.
 - Som ligado por padrão, ativado na primeira interação, com opção de desligar.
 
 ## Executar localmente

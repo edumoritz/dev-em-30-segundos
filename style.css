@@ -106,3 +106,18 @@ main{width:100%;flex:1;min-height:0;min-width:0;margin:0 auto;padding:20px 5%;di
  footer{padding:6px 4%}
  footer span:not(:first-child){display:none}
 }
+
+/* Keep the optional Pix contribution readable on paginated screens. */
+.game-content .pix-support{grid-template-columns:minmax(0,1fr) 160px;gap:20px;padding:16px 0;margin:18px 0;break-inside:avoid}
+.game-content .pix-support h3{font-size:22px;margin:10px 0}
+.game-content .pix-support p{margin:10px 0;line-height:1.4}
+.game-content .pix-qr img{width:160px;height:160px}
+.game-content .pix-details{margin-top:10px}
+.game-content .pix-details textarea{resize:none}
+@media(max-width:700px){
+ .game-content .pix-support{display:block;break-inside:auto}
+ .game-content .pix-copy{break-inside:auto}
+ .game-content .pix-qr{margin:14px auto;break-inside:avoid}
+ .game-content .pix-qr img{width:144px;height:144px}
+ .game-content .pix-qr figcaption{margin-top:8px}
+}
