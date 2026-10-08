@@ -1,0 +1,8 @@
+.voice-note:not(:empty){padding:12px;background:#203b33;border:1px solid #3c5d50;border-radius:4px 14px 14px 14px;display:grid;gap:8px;min-width:0;max-width:100%}
+.voice-note button{font:16px Arial,Helvetica,sans-serif;display:flex;align-items:center;gap:10px;width:100%;min-height:44px;text-align:left;border:0;background:transparent;padding:0;color:#f3fff8;cursor:pointer}
+.voice-note button::before{content:'▶';display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;border-radius:50%;background:#a8e3bc;color:#173226}
+.voice-note button[aria-pressed=true]::before{content:'■'}
+.voice-status,.voice-transcript-label{font:12px/1.5 Arial,Helvetica,sans-serif;color:#b3c9bd}
+.voice-transcript-label{border-top:1px solid #547565;padding-top:8px}
+.voice-note .voice-transcript{font:16px/1.5 Arial,Helvetica,sans-serif;color:#f0f7f3;margin:0;overflow-wrap:anywhere}
+.voice-note button:disabled{opacity:.65;cursor:default}

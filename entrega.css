@@ -80,3 +80,27 @@ html{height:100%;overflow:hidden}header,footer{flex-shrink:0}main{overflow:hidde
 .stats .project-update[data-tone=info] p{color:#e3edff}
 #result{display:flex;align-items:center}
 #result>.result-content{width:100%}
+
+/* Text keeps its reading size; long content scrolls within its own panel. */
+.welcome{overflow-y:auto;overflow-x:hidden}
+#result{display:block}
+#result>.result-content{margin:auto}
+#store{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable}
+.communication [role=tabpanel]{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable}
+.communication .chat-past,
+#clientPane .chat-past:has(.voice-note:not(:empty)):not(.history-visible){flex:0 0 auto;min-height:auto;overflow:visible}
+.chat-past>.fit-content{width:100%;min-width:0}
+.communication .current-request{flex:0 0 auto}
+.current-request .message p,.chat-history p,.chat-past .voice-transcript{font-size:16px;line-height:1.5}
+.chat-past .voice-note button{font-size:16px;min-height:44px}
+.communication #clientActions button,.communication #aiActions button{font-size:15px;min-height:44px}
+.chat-past .voice-status,.chat-past .voice-transcript-label{display:block}
+.stats{min-height:68px;flex-shrink:0}
+.stats .project-update{height:68px;overflow-y:auto}
+#feedbackBubble[hidden]{display:block!important;visibility:hidden}
+.products{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:760px){
+ .stats .project-update{height:48px}
+ .communication #clientActions,.communication #aiActions{grid-template-columns:1fr}
+ .products{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+}
