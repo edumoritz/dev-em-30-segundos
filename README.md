@@ -36,6 +36,8 @@ Acesse `/entrega.html` diretamente ou pelo convite na abertura e no certificado.
 
 O progresso e o tempo restante ficam neste navegador; sair da aba pausa a partida. O pagamento da loja é fictício. Não usa login nem IA em tempo real.
 
+Três mensagens de voz do cliente usam scripts fixos e a síntese de voz do navegador em português. Tocam na loja gerada, no carrinho duplicado e após a entrega, com transcrição e botão de repetir/parar. O som geral controla a reprodução automática e o relógio pausa durante a fala. Navegadores sem síntese de voz mantêm o texto; a voz disponível varia por aparelho.
+
 ## Executar localmente
 
 O projeto usa HTML, CSS e JavaScript, sem dependências de build.
