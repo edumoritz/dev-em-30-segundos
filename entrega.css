@@ -66,3 +66,17 @@ html{height:100%;overflow:hidden}header,footer{flex-shrink:0}main{overflow:hidde
 .chat-past .voice-transcript{font-size:18px;line-height:1.4}.chat-past .voice-note button{font-size:16px}
 @media(max-height:750px){main{padding-top:8px;padding-bottom:8px}#desk{gap:8px}.stats .project-update{padding:6px 10px}.project-update p{margin:0}.stats .project-update small{display:none}.communication [role=tabpanel]{padding:8px;gap:8px}.communication #clientActions{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:8px}.current-request .message{padding:8px}.chat-past .voice-note:not(:empty){padding:8px;gap:6px}.chat-past .voice-transcript{font-size:16px}.chat-past .voice-status,.chat-past .voice-transcript-label{display:none}.chat-past .voice-note button{min-height:36px}.chat-past .voice-note button::before{width:32px;height:32px;flex-basis:32px}.history-toggle{min-height:26px;padding:4px 8px;margin-bottom:6px}.tabs button{min-height:34px;padding:6px}.objective{padding:6px 10px}.delivery-action{padding:6px}.delivery-action button{min-height:36px;padding:8px}}
 @media(max-height:550px){header{padding:4px 4%}.brand b{font-size:18px}header button{min-height:32px;padding:6px 10px}footer{padding:4px 4%}.stats{gap:12px}.stats strong{font-size:17px}.stats small{font-size:10px}.stats button{min-height:32px}.current-request .message small{display:none}.current-request .message p{margin:0}.communication #clientActions button{min-height:34px;padding:6px 8px}.objective{font-size:12px}.chat-past .voice-note:not(:empty){gap:4px}}
+
+/* Keep history, current request and choices in one compact conversation. */
+.communication .chat-past,
+#clientPane .chat-past:has(.voice-note:not(:empty)):not(.history-visible){flex:0 1 auto;min-height:0}
+.communication [role=tabpanel]{justify-content:flex-start}
+.delivery-warning{font-size:13px;line-height:1.4;color:#ffd39a;margin:8px 0 0}
+.stats .project-update[data-tone=error]{background:#44252b;border-color:#b64a59}
+.stats .project-update[data-tone=error] p{color:#ffe0e5}
+.stats .project-update[data-tone=warning]{background:#3e3321;border-color:#99783a}
+.stats .project-update[data-tone=warning] p{color:#ffe2aa}
+.stats .project-update[data-tone=info]{background:#242e40;border-color:#475d80}
+.stats .project-update[data-tone=info] p{color:#e3edff}
+#result{display:flex;align-items:center}
+#result>.result-content{width:100%}
