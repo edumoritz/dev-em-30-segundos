@@ -27,9 +27,9 @@ jobs:
           node --check viewport.js
           node --check entrega.js
           node --check client-voice.js
-          node --check game-events.js
+          node --check site.js
           mkdir -p dist
-          cp index.html style.css app.js fiscal.js viewport.js favicon.svg pix-qr.png entrega.html entrega.css entrega.js client-voice.js metrics.html game-events.js dist/
+          cp index.html style.css app.js fiscal.js viewport.js favicon.svg pix-qr.png entrega.html entrega.css entrega.js client-voice.js metrics.html site.js dist/
       - name: Verificar configuração do deploy
         shell: bash
         run: |
