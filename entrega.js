@@ -79,7 +79,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)clientVoice
 // Fit the current scene to its own panel, including the end screen.
 let fitFrame;
 function scheduleFit(){cancelAnimationFrame(fitFrame);fitFrame=requestAnimationFrame(fitScenes);}
-function fitScenes(){document.querySelectorAll('#welcome,#result,#store,.chat-past').forEach(area=>{if(!area.getClientRects().length)return;const content=area.querySelector(':scope > .fit-content');if(!content)return;content.style.zoom='1';content.style.width='100%';const style=getComputedStyle(area);const availableWidth=area.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight);content.style.width=availableWidth+'px';const available=area.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom)-2;if(available<=0)return;if(area.closest('#clientPane')&&area.querySelector('.voice-note:not(:empty)')&&!area.classList.contains('history-visible')){fitVoiceTranscript(content,available);return;}let scale=1;for(let i=0;i<3;i++){const height=content.getBoundingClientRect().height;if(height<=available+1)break;scale*=available/height;content.style.zoom=String(scale);content.style.width=(availableWidth/scale)+'px';}});}
+function fitScenes(){document.querySelectorAll('#welcome,#result,#store,.chat-past').forEach(area=>{if(!area.getClientRects().length)return;const content=area.querySelector(':scope > .fit-content');if(!content)return;content.style.zoom='1';content.style.width='100%';const style=getComputedStyle(area);const availableWidth=area.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight);content.style.width=availableWidth+'px';const available=area.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom)-2;if(available<=0)return;if(area.closest('#clientPane')&&area.querySelector('.voice-note:not(:empty)')&&!area.classList.contains('history-visible')){return;}let scale=1;for(let i=0;i<3;i++){const height=content.getBoundingClientRect().height;if(height<=available+1)break;scale*=available/height;content.style.zoom=String(scale);content.style.width=(availableWidth/scale)+'px';}});}
 window.addEventListener('resize',scheduleFit);
 if(window.ResizeObserver){const fitObserver=new ResizeObserver(scheduleFit);document.querySelectorAll('main,.desktop,.communication,.browser').forEach(area=>fitObserver.observe(area));}
 scheduleFit();
@@ -88,22 +88,3 @@ function rememberClient(message){if(state.lastClient&&state.lastClient!==message
 function rememberAI(){if(state.aiReply){state.aiHistory??=[];if(state.aiHistory.at(-1)!==state.aiReply)state.aiHistory.push(state.aiReply);state.aiHistory=state.aiHistory.slice(-20);state.aiHistoryPage=null;}}
 function renderHistory(){['client','ai'].forEach(channel=>{const container=el(channel+'History');container.replaceChildren();const history=state[channel+'History']||[];if(!history.length)return;const index=Math.min(history.length-1,Math.max(0,state[channel+'HistoryPage']??history.length-1));const bubble=document.createElement('div');bubble.className='message previous-message';const label=document.createElement('small');label.textContent=channel==='client'?'CLIENTE · MENSAGEM ANTERIOR':'IA · RESPOSTA ANTERIOR';const p=document.createElement('p');p.textContent=history[index];bubble.append(label,p);container.append(bubble);if(channel==='client'&&el('voiceNote').children.length){const past=container.closest('.chat-past');past.classList.toggle('history-visible',!!state.clientShowHistory);const toggle=document.createElement('button');toggle.className='history-toggle';toggle.textContent=state.clientShowHistory?'Voltar ao áudio':'Mensagens anteriores';toggle.onclick=()=>{state.clientShowHistory=!state.clientShowHistory;renderHistory();scheduleFit();};container.prepend(toggle);}if(history.length>1){const nav=document.createElement('div');nav.className='history-navigation';for(const [label,delta] of [['← Anterior',-1],['Mais recente →',1]]){const button=document.createElement('button');button.textContent=label;button.disabled=index+delta<0||index+delta>=history.length;button.onclick=()=>{state[channel+'HistoryPage']=index+delta;renderHistory();scheduleFit();};nav.append(button);}container.append(nav);}});}
 
-// Keep voice text readable; page the transcript when a short screen has less room.
-function fitVoiceTranscript(content, available){
- const transcript=content.querySelector('.voice-transcript');if(!transcript)return;
- transcript.dataset.fullText??=transcript.textContent;
- const words=transcript.dataset.fullText.split(/\s+/);
- content.querySelector('.transcript-navigation')?.remove();
- transcript.textContent=transcript.dataset.fullText;
- if(content.getBoundingClientRect().height<=available+1)return;
- const nav=document.createElement('div');nav.className='transcript-navigation';
- const back=document.createElement('button'),next=document.createElement('button'),label=document.createElement('small');
- back.textContent='←';back.setAttribute('aria-label','Trecho anterior da transcrição');next.textContent='→';next.setAttribute('aria-label','Próximo trecho da transcrição');nav.append(back,label,next);transcript.after(nav);
- const pages=[];let start=0;
- while(start<words.length){let low=1,high=words.length-start,best=1;
- while(low<=high){const count=Math.floor((low+high)/2);transcript.textContent=words.slice(start,start+count).join(' ');if(content.getBoundingClientRect().height<=available+1){best=count;low=count+1;}else high=count-1;}
- pages.push(words.slice(start,start+best).join(' '));start+=best;
- }
- const page=Math.min(pages.length-1,Number(transcript.dataset.page)||0);transcript.textContent=pages[page];label.textContent=(page+1)+' / '+pages.length;back.disabled=page===0;next.disabled=page===pages.length-1;
- back.onclick=()=>{transcript.dataset.page=String(page-1);scheduleFit();};next.onclick=()=>{transcript.dataset.page=String(page+1);scheduleFit();};
-}
