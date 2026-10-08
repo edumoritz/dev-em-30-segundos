@@ -6,6 +6,9 @@ const clientVoice = (() => {
   const heard = new Set();
   let current = null, timeout = null, playing = false, muted = false;
   const notes = {
+    classicBrief: 'Quero igual ao Instagram, mas diferente. Bem simples.',
+    classicIncident: 'Já mandei o link no grupo da família. O pagamento cobrou duas vezes e agora o site não abre. Era para ser só uma página, lembra?',
+    classicExtra: 'Dá para funcionar sem internet, sincronizar em tempo real e custar zero?',
     shop: 'Ficou ótimo! Agora consegue deixar igual à Amazon? Mas pode manter simples.',
     mugs: 'Ô, cliquei em comprar uma caneca e apareceram duas no carrinho. Se cobrar duas, é bug. Se cobrar uma, eu gostei.',
     delivered: 'Já te indiquei pra um amigo. Falei que você faz baratinho e aceita qualquer alteração.'
