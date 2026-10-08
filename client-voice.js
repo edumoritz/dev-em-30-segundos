@@ -18,7 +18,7 @@ const clientVoice = (() => {
       button.setAttribute('aria-pressed', String(active));
     });
     document.querySelectorAll('.voice-status').forEach(status => {
-      status.textContent = playing ? 'Reproduzindo · cronômetro pausado' : 'Voz do navegador · texto abaixo';
+      status.textContent = playing ? 'Reproduzindo · cronômetro pausado' : 'Mensagem de voz do cliente';
     });
   }
   function stop() {
@@ -62,7 +62,10 @@ const clientVoice = (() => {
     const transcript = document.createElement('p');
     transcript.className = 'voice-transcript';
     transcript.textContent = notes[key];
-    container.append(button, status, transcript);
+    const label = document.createElement('small');
+    label.className = 'voice-transcript-label';
+    label.textContent = 'Transcrição';
+    container.append(button, status, label, transcript);
     update();
     if (autoplay && !heard.has(key)) play(key);
   }
