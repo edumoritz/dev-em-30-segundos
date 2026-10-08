@@ -66,7 +66,13 @@ function showCheckoutNotice(success,title,message){
   notice.focus({preventScroll:true});
   const area=el('store'),box=area.getBoundingClientRect(),rect=notice.getBoundingClientRect();
   if(rect.top<box.top||rect.bottom>box.bottom)area.scrollTop+=rect.top-box.top-12;
-  say(title+'. '+message,true,success?'success':'error');
+  // Checkout feedback belongs to the storefront, beside the purchase action.
+  state.feedback='';
+  state.feedbackTone='info';
+  el('feedback').textContent='';
+  el('feedbackBubble').hidden=true;
+  save();
+  beep();
 }
 function clock(){const sec=Math.max(0,Math.ceil(state.remaining));el('clock').textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');el('clock').classList.toggle('danger',sec<30);}
 function start(s){clientVoice.reset();state=s;running=true;lastTick=performance.now();el('welcome').hidden=true;el('result').hidden=true;el('desk').hidden=false;el('pause').textContent='Pausar';el('aiMessage').textContent=state.aiReply||'Pode deixar comigo. O que poderia dar errado?';el('aiRequest').textContent=state.aiRequest||'';el('aiRequestBubble').hidden=!state.aiRequest;el('feedback').textContent=state.feedback||'';el('feedbackBubble').dataset.tone=state.feedbackTone||'info';el('feedbackBubble').hidden=!state.feedback;tab(state.pendingAI?'ai':state.generated?'client':'ai');render();save();beep();}

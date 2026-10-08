@@ -11,3 +11,9 @@ body>header #sound{flex:none;min-height:44px;margin-left:auto;padding:10px 14px;
  body>header .logo{flex-basis:36px;width:36px;height:36px;font-size:20px}
  body>header #sound{font-size:12px;padding:8px;min-height:44px}
 }
+
+/* Slim scrollbars for the internal game panels. */
+:where(.game-viewport,.intro,.welcome,#result,#store,.communication [role=tabpanel]){scrollbar-width:thin;scrollbar-color:#657082 transparent}
+:where(.game-viewport,.intro,.welcome,#result,#store,.communication [role=tabpanel])::-webkit-scrollbar{width:6px;height:6px}
+:where(.game-viewport,.intro,.welcome,#result,#store,.communication [role=tabpanel])::-webkit-scrollbar-track{background:transparent}
+:where(.game-viewport,.intro,.welcome,#result,#store,.communication [role=tabpanel])::-webkit-scrollbar-thumb{background:#657082;border-radius:8px}
