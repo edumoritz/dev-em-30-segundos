@@ -17,7 +17,17 @@
 
 .communication [role=tabpanel]{display:flex;flex-direction:column;overflow:hidden}.chat-messages{flex:1;min-height:0;overflow:auto;padding-bottom:4px}.communication #clientActions,.communication #aiActions{flex-shrink:0;max-height:45%;overflow:auto;border-top:1px solid var(--line);padding-top:10px}.communication #aiActions{grid-template-columns:repeat(2,minmax(0,1fr))}.communication #aiActions button{padding:10px}.shop-tools,.objective,.tabs,.delivery-action{flex-shrink:0}
 
-.conversation-next{grid-column:1 / -1}@media(max-width:760px){.desktop{grid-template-rows:minmax(0,.9fr) minmax(0,1.1fr)}}
+@media(max-width:760px){.desktop{grid-template-rows:minmax(0,.9fr) minmax(0,1.1fr)}}
 .message p{overflow-wrap:anywhere}
 
-.suggested-correction{grid-column:1 / -1;border:2px solid var(--lime)}
+
+
+/* A conversation has one scroll area, including its actions. */
+.desktop{grid-template-columns:minmax(0,1fr) minmax(340px,36%)}
+.communication [role=tabpanel]{display:block;overflow:auto;scrollbar-width:thin;scrollbar-color:#657082 transparent}
+.chat-messages{overflow:visible;padding-bottom:0}
+.communication #clientActions,.communication #aiActions{max-height:none;overflow:visible;border:0;padding-top:0;grid-template-columns:1fr}
+.communication #aiActions button{padding:12px 16px}
+.workspace-tabs{display:none}
+@media(max-height:750px) and (min-width:761px){.objective{padding:8px 12px;font-size:13px}.delivery-action{padding:8px}[role=tabpanel]{padding:12px}.message{padding:12px}.message p{margin-top:8px}.decision{margin-top:8px}.stats{gap:24px}#desk{gap:10px}}
+@media(max-width:760px){.workspace-tabs{display:flex;gap:6px;flex-shrink:0}.workspace-tabs button{flex:1;padding:8px;min-height:36px;font-size:14px}.workspace-tabs [aria-pressed=true]{border-color:var(--lime);color:var(--lime)}.desktop{display:flex;min-height:0}.desktop>.browser,.desktop>.communication{flex:1;min-width:0}.desktop[data-view=chat]>.browser,.desktop[data-view=store]>.communication{display:none}.communication [role=tabpanel]{padding:14px}.communication #clientActions,.communication #aiActions{grid-template-columns:1fr;gap:8px}.communication #clientActions button,.communication #aiActions button{font-size:14px;padding:12px;min-height:44px}.message{font-size:15px;line-height:1.5}.objective{font-size:13px}.products{gap:8px}.product h3{font-size:14px}}
