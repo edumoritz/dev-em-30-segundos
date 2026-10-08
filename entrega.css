@@ -31,3 +31,20 @@
 .workspace-tabs{display:none}
 @media(max-height:750px) and (min-width:761px){.objective{padding:8px 12px;font-size:13px}.delivery-action{padding:8px}[role=tabpanel]{padding:12px}.message{padding:12px}.message p{margin-top:8px}.decision{margin-top:8px}.stats{gap:24px}#desk{gap:10px}}
 @media(max-width:760px){.workspace-tabs{display:flex;gap:6px;flex-shrink:0}.workspace-tabs button{flex:1;padding:8px;min-height:36px;font-size:14px}.workspace-tabs [aria-pressed=true]{border-color:var(--lime);color:var(--lime)}.desktop{display:flex;min-height:0}.desktop>.browser,.desktop>.communication{flex:1;min-width:0}.desktop[data-view=chat]>.browser,.desktop[data-view=store]>.communication{display:none}.communication [role=tabpanel]{padding:14px}.communication #clientActions,.communication #aiActions{grid-template-columns:1fr;gap:8px}.communication #clientActions button,.communication #aiActions button{font-size:14px;padding:12px;min-height:44px}.message{font-size:15px;line-height:1.5}.objective{font-size:13px}.products{gap:8px}.product h3{font-size:14px}}
+
+/* Every scene fits its panel; overflow is never used as navigation. */
+html{height:100%;overflow:hidden}header,footer{flex-shrink:0}main{overflow:hidden}
+.welcome{height:100%;max-height:100%;overflow:hidden}
+#store,.communication [role=tabpanel],.chat-messages{overflow:hidden}
+.fit-content{display:flow-root;transform-origin:top left;min-width:0}
+.communication #clientActions,.communication #aiActions{overflow:visible}
+.message+.message{margin-top:10px}
+#decisionBubble{display:none}
+.result-content{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;align-items:start}
+.result-content>.eyebrow,.result-content>.result-title,.result-content>p,.result-content>.start-actions{grid-column:1 / -1}
+.result-content>.result-title{margin:0;font-size:clamp(28px,4vw,46px)}
+.result-content>p{margin:0}.result-content>.receipt{margin:0;padding:16px;gap:12px}
+.result-content>blockquote{margin:0;font-size:20px}.result-content>#resultVoice{grid-column:2;grid-row:4 / span 2;margin:0}
+.result-content>.start-actions{margin:0;align-items:center}
+@media(max-width:760px){.result-content{grid-template-columns:1fr;gap:10px}.result-content>*{grid-column:1!important;grid-row:auto!important}.result-content>blockquote{font-size:16px}.result-content>.receipt{padding:12px;gap:8px}.result-content>.result-title{font-size:28px}.result-content .voice-note{padding:10px}.result-content .start-actions{gap:10px}.result-content .start-actions button{font-size:14px;padding:10px}.voice-note:not(:empty){padding:10px;gap:5px}.voice-transcript-label{padding-top:6px}.communication [role=tabpanel]{padding:10px}.message{padding:10px}.message p{margin-top:6px}.communication #clientActions,.communication #aiActions{margin-top:10px;gap:6px}.communication #clientActions button,.communication #aiActions button{padding:10px}.objective{padding:6px 10px}header{padding:8px 4%}main{padding:8px 4%}footer{padding:6px 4%}}
+@media(max-height:600px){header{padding:6px 4%}main{padding:8px 4%}footer{padding:5px 4%}.stats strong{font-size:17px}.stats button{min-height:34px;padding:6px 12px}.stats small{font-size:10px}.shop-tools{padding:6px 10px}.shop-tools button{min-height:34px;padding:6px 12px}.window-bar{padding:8px 12px}.tabs button{padding:6px;min-height:34px}.delivery-action{padding:6px}.delivery-action button{min-height:36px;padding:8px}.objective{padding:6px 10px;font-size:12px}}
