@@ -54,7 +54,7 @@ Para conectar este repositório ao Pages, selecione um projeto de site estático
 
 ### Métricas anônimas
 
-`metrics.js` registra visualizações, início e conclusão dos dois jogos no projeto Supabase **Prototype Metrics (Supa1)**. Um identificador aleatório fica no navegador para reconhecer a mesma pessoa entre os jogos. Não pedimos cadastro nem registramos nome, e-mail ou IP no banco de métricas. A contagem é aproximada: outro navegador ou aparelho aparece como outra pessoa.
+`game-events.js` registra visualizações, início e conclusão dos dois jogos no projeto Supabase **Prototype Metrics (Supa1)**. Um identificador aleatório fica no navegador para reconhecer a mesma pessoa entre os jogos. Não pedimos cadastro nem registramos nome, e-mail ou IP no banco de métricas. A contagem é aproximada: outro navegador ou aparelho aparece como outra pessoa.
 
 Os dados ficam isolados no schema `esopraia_metrics`. A migração está em `supabase/migrations/20261008191000_add_esopraia_game_metrics.sql`, e a Edge Function em `supabase/functions/prototype-game-metrics/`. O navegador usa apenas a chave pública anon; a chave `service_role` permanece nos segredos do Supabase e não é incluída no site.
 
