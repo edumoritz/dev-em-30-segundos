@@ -71,7 +71,6 @@ html{height:100%;overflow:hidden}header,footer{flex-shrink:0}main{overflow:hidde
 .communication .chat-past,
 #clientPane .chat-past:has(.voice-note:not(:empty)):not(.history-visible){flex:0 1 auto;min-height:0}
 .communication [role=tabpanel]{justify-content:flex-start}
-.delivery-warning{font-size:13px;line-height:1.4;color:#ffd39a;margin:8px 0 0}
 .stats .project-update[data-tone=error]{background:#44252b;border-color:#b64a59}
 .stats .project-update[data-tone=error] p{color:#ffe0e5}
 .stats .project-update[data-tone=warning]{background:#3e3321;border-color:#99783a}
@@ -104,3 +103,13 @@ html{height:100%;overflow:hidden}header,footer{flex-shrink:0}main{overflow:hidde
  .communication #clientActions,.communication #aiActions{grid-template-columns:1fr}
  .products{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
 }
+
+
+/* Error console appears at the storefront bottom only while there is an error. */
+.project-terminal{flex:none;margin:0 12px 10px;padding:8px 10px;background:#101318;color:#dce4e8;border:1px solid #454d57;border-radius:7px;max-height:132px;overflow:auto;font:12px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;scrollbar-width:thin;scrollbar-color:#657082 transparent}
+.project-terminal-head{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#aeb9c5;font-size:10px;letter-spacing:.06em}
+.project-terminal-head button{min-height:28px;padding:4px 8px;font:inherit;color:#c9d2dc;background:#202630}
+#terminalOutput{white-space:pre-wrap;overflow-wrap:anywhere;margin:6px 0 0;font:inherit}
+.terminal-error{color:#ff9299}.terminal-warning{color:#ffd486}
+.project-terminal::-webkit-scrollbar{width:5px}.project-terminal::-webkit-scrollbar-thumb{background:#657082;border-radius:8px}
+@media(max-width:760px){.project-terminal{margin:0 7px 7px;padding:7px 8px;max-height:92px;font-size:11px}.project-terminal-head button{min-height:26px}}
