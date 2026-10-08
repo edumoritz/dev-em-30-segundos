@@ -121,3 +121,5 @@ main{width:100%;flex:1;min-height:0;min-width:0;margin:0 auto;padding:20px 5%;di
  .game-content .pix-qr img{width:144px;height:144px}
  .game-content .pix-qr figcaption{margin-top:8px}
 }
+
+.new-game-link{display:inline-block;margin-left:12px;color:var(--lime);font-weight:700}.freela-invite{border:1px solid var(--line);border-radius:10px;padding:18px;margin:20px 0;break-inside:avoid}.freela-invite p{color:var(--muted);font-size:14px}.freela-invite a{display:inline-flex;text-decoration:none}@media(max-width:650px){.new-game-link{display:block;margin:8px 0 0}}
