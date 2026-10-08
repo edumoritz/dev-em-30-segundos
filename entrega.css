@@ -17,5 +17,7 @@
 
 .communication [role=tabpanel]{display:flex;flex-direction:column;overflow:hidden}.chat-messages{flex:1;min-height:0;overflow:auto;padding-bottom:4px}.communication #clientActions,.communication #aiActions{flex-shrink:0;max-height:45%;overflow:auto;border-top:1px solid var(--line);padding-top:10px}.communication #aiActions{grid-template-columns:repeat(2,minmax(0,1fr))}.communication #aiActions button{padding:10px}.shop-tools,.objective,.tabs,.delivery-action{flex-shrink:0}
 
-.conversation-next{grid-column:1 / -1}@media(max-width:760px){body{height:auto;min-height:100dvh;overflow:auto}main{flex:1;overflow:visible}#desk{height:auto}.desktop{flex:auto;grid-template-rows:360px 460px}.communication [role=tabpanel]{min-height:0}}
+.conversation-next{grid-column:1 / -1}@media(max-width:760px){.desktop{grid-template-rows:minmax(0,.9fr) minmax(0,1.1fr)}}
 .message p{overflow-wrap:anywhere}
+
+.suggested-correction{grid-column:1 / -1;border:2px solid var(--lime)}
